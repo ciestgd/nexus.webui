@@ -1,0 +1,79 @@
+body {
+    font-size: 16px;
+    // font-family: 'Times New Roman';
+    // font-family:Source Sans Pro Web, "Noto Sans Arabic", "Noto Sans BN homepage", "Noto Sans GU homepage", "Noto Sans KR homepage", "Noto Sans SC homepage", "Noto Sans BN", "Noto Sans GU", "Noto Sans KR", "Noto Sans SC", "Noto Sans TC", "Helvetica Neue", Helvetica, Arial, sans;
+    font-family: Calibri, sans-serif;
+    --point-color: #332288;
+    --advanced-color: #f700ff;
+    --advanced-color-active:#f700ffd3;
+}
+#app {
+    height: 100vh;
+    .el-button {
+        border-radius: 2px;
+    }
+}
+
+.el-dialog {
+    padding: 0;
+    border: 3px solid #ccc;
+    overflow: hidden;
+    .el-dialog__body {
+        padding: 0;
+        height: calc(100% - 44px);
+    }
+    .el-dialog__header {
+        .el-dialog__title {
+            font-size: 14px;
+            font-weight: bold;
+        }
+        margin-right: 0;
+        padding: 0px 4px 0px 8px;
+        border-bottom: 1px solid #e4e4e4;
+    }
+    .el-dialog__footer {
+        padding: 0 16px 16px 0;
+        .dialog-footer {
+            .el-button {
+                padding-left: 24px;
+                padding-right: 24px;
+            }
+            .el-button + .el-button {
+                margin-left: 30px;
+            }
+        }
+    }
+}
+.os-scrollbar-vertical > .os-scrollbar-track > .os-scrollbar-handle {
+    width: 7px;
+}
+.el-popper.is-customized {
+    background: rgba(0, 0, 0, 0.6);
+    color: #fff;
+}
+.el-popper.is-customized .el-popper__arrow::before {
+    background: rgba(0, 0, 0, 0.5);
+}
+.ol-ctx-menu-container {
+    z-index: 999;
+    position: fixed !important;
+}
+
+.rotate-north {
+    top: 90px;
+    right: 10px;
+    width: 24px;
+    height: 24px;
+}
+.rotate-north button {
+    width: 100%;
+    height: 100%;
+    box-sizing: border-box;
+    margin: 0px;
+    border: 1px solid #e1e1e1;
+}
+
+.silder-north {
+    bottom: 300px;
+    right: 10px;
+}
