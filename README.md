@@ -1,140 +1,159 @@
-**项目名称**: NEXUS - Web UI
+# NEXUS - Web UI
 
-**简介**:
-- **描述**: NEXUS 是一个多污染物基于风险的分析工具，用于识别和评估与 PM2.5、O3 和空气毒性物质相关的高健康风险重叠区域。
-- **作者**: IceCoffee
+Overview
+---
+NEXUS is a web-based front-end for multi-pollutant risk analysis, designed to identify and visualize overlapping high-health-risk areas related to PM2.5, O3, and air toxics. The application targets environmental analysts, researchers, and urban/regional planners.
 
-**主要技术栈**:
-- **前端框架**: `Vue 3` (使用 `vite` 开发工具链)
-- **状态管理**: `Pinia`
-**项目名称**: NEXUS - Web UI
+Author: IceCoffee
 
-**概述**
-- **描述**: NEXUS 是一个多污染物风险分析前端，主要用于识别和可视化与 PM2.5、O3 及空气毒性相关的高风险重叠区域。
-- **作者**: IceCoffee
-- **目标用户**: 环境分析师、研究人员与城市/区域规划人员。
+Key Features
+---
+- Multi-pollutant risk comparison and visualization (PM2.5, O3, air toxics)
+- Map-based visualizations and charting
+- Supports multiple data sources (monitoring data, model outputs, raster/vector layers)
+- Export data to CSV / Excel
 
-**主要特性**
-- 多污染物风险展示与对比（PM2.5、O3、空气毒性）
-- 基于地图的可视化与图表分析
-- 多数据源支持（监测数据、模型输出、栅格/矢量图层）
-- 导出数据为 CSV / Excel
+Tech Stack
+---
+- Frontend: Vue 3 + Vite
+- State management: Pinia
+- UI: Element Plus
+- Mapping: OpenLayers (`ol`)
+- Charting: ECharts, Chart.js
+- HTTP: axios (wrapped in `src/libs/request.js`, includes caching and global error handling)
 
-**技术栈**
-- **前端**: `Vue 3` + `Vite`
-- **状态管理**: `Pinia`
-- **UI**: `Element Plus`
-- **地图**: `OpenLayers (ol)`
-- **图表**: `ECharts`, `chart.js`
-- **HTTP**: `axios`（项目封装在 `src/libs/request.js`，含请求缓存与全局错误处理）
+Quick Start
+---
+Requirements: Node.js >= 16 (Node 18+ recommended)
 
-**快速开始**
-- **要求**: `Node.js` >= 16（建议使用 Node 18+）
-- **安装依赖**:
-```
+Install dependencies:
+```bash
 npm install
 ```
-- **运行开发服务器**:
-```
+
+Run dev server:
+```bash
 npm run dev
 ```
-- **生成生产构建**:
-```
+
+Build for production:
+```bash
 npm run build
 ```
-- **本地预览构建结果**:
-```
+
+Preview production build locally:
+```bash
 npm run preview
 ```
 
-**环境变量**
-在本地开发时可在仓库根目录创建 `.env.local` 或 `.env`，常用变量：
+Environment Variables
+---
+Create a `.env` or `.env.local` in the project root for local overrides. Common variables:
 ```
 VITE_APP_API_BASE_URL=http://localhost:5000/api
 VITE_APP_API_TIMEOUT=30000
 ```
-这些变量在 `src/libs/request.js` 中用于配置 `axios` 实例的 `baseURL` 与 `timeout`。
+These are used by `src/libs/request.js` to configure axios `baseURL` and `timeout`.
 
-**项目目录（摘要）**
-- `public/`：静态资源与数据（`dataInput/`、`mapLayer/`、`proximityData/` 等）
+Project Layout (summary)
+---
+- `public/`: static assets and data (e.g. `dataInput/`, `mapLayer/`, `proximityData/`)
 - `src/`
-	- `src/api/`：后端接口封装（示例：`map-layer.js`、`monitor-data.js`、`endpoints.js`）
-	- `src/components/`：可复用 Vue 组件
-	- `src/libs/`：工具与封装（请求、导出、地图交互等）
-	- `src/store/`：Pinia 状态模块
-	- `src/views/`：页面视图
-	- `src/router/`：路由配置
+  - `src/api/`: backend API wrappers (examples: `map-layer.js`, `monitor-data.js`, `endpoints.js`)
+  - `src/components/`: reusable Vue components
+  - `src/libs/`: helper modules and wrappers (request, export, map interactions, etc.)
+  - `src/store/`: Pinia modules
+  - `src/views/`: pages
+  - `src/router/`: routing
 
-示例文件（快速索引）：
-- `src/libs/request.js`：封装 `axios`，拦截器会直接返回 `response.data`，并处理错误与进度条。
-- `src/api/endpoints.js`：获取后端可用端点 `getEndpoints()`。
-- `src/api/map-layer.js`：`getMapLayerData({ pollutantType, dataType, year, dataScaleType })`。
-- `src/api/monitor-data.js`：提供 `getPM25MonitorData`, `getO3MonitorData`, `getAirToxicMonitorData` 等方法。
+Notable files:
+- `src/libs/request.js`: axios wrapper with progress, caching and central error handling.
+- `src/api/endpoints.js`: `getEndpoints()` - fetch available endpoints from backend.
+- `src/api/map-layer.js`: `getMapLayerData({ pollutantType, dataType, year, dataScaleType })`.
+- `src/api/monitor-data.js`: `getPM25MonitorData`, `getO3MonitorData`, `getAirToxicMonitorData`, etc.
 
-**API 使用示例**
-（这些包装函数位于 `src/api/*.js`，内部通过 `src/libs/request.js` 发起请求）
+API Usage Examples
+---
+All API helpers are in `src/api/*.js` and call `src/libs/request.js`.
 
-示例：调用地图图层数据
+Example: fetch map layer data
 ```javascript
 import { getMapLayerData } from '@/api/map-layer';
 
 const params = { pollutantType: 'PM25', dataType: 'design', year: 2017 };
 const layerData = await getMapLayerData(params);
-// 注意：request 封装的拦截器会返回 response.data
+// Note: the request wrapper returns response.data directly.
 ```
 
-示例：获取监测站 PM2.5 数据
+Example: fetch PM2.5 monitor data
 ```javascript
 import { getPM25MonitorData } from '@/api/monitor-data';
 
-// rankingYear: 年度排序依据，topCount: 取前 N 条，sinceYear: 起始年份，geoIdList: 可选地理过滤
+// rankingYear, topCount, sinceYear, geoIdList
 const data = await getPM25MonitorData(2020, 50, 2015, { geoid: ['14000US36061'] });
 ```
 
-注意事项：`src/libs/request.js` 使用 `qs` 将数组序列化为 `repeat` 格式（例如 `?geoid=1&geoid=2`），并使用 `axios-cache-interceptor` 做简单缓存。
+Notes: `src/libs/request.js` serializes arrays using `qs` with the `repeat` format (e.g. `?geoid=1&geoid=2`) and uses `axios-cache-interceptor` for basic caching.
 
-**数据说明**
-- 项目依赖的多数静态数据放在 `public/dataInput/`，包括但不限于：
-	- 监测站数据（CSV / JSON）
-	- 栅格或分区文件（GeoJSON / CSV）
-	- 结果/派生数据（JSON）
-- 更新数据时请保证字段一致（例如地理 ID 字段名、年份字段、污染物标识等），否则前端解析或图层渲染可能失败。
+Data
+---
+Most static datasets are stored in `public/dataInput/`, including monitor data, grid/zone GeoJSON or CSV, and derived results JSON. Keep data field names consistent (e.g. geoid field name, year, pollutant id) to avoid parsing or rendering issues on the front end.
 
-**开发与调试建议**
-- 调试后端交互：在浏览器网络面板观察请求 URL 与参数，注意 `baseURL` 与环境变量是否生效。
-- 常见调试点：
-	- 地图交互逻辑：`src/libs/map-*`、`src/libs/map-click.js`、`src/libs/map-point.js`。
-	- 页面状态与数据流：Pinia 模块在 `src/store/`。
-	- 接口适配：`src/api/` 中封装的各方法。
+Development & Debugging Tips
+---
+- Check the browser network tab to inspect request URLs and parameters; ensure `VITE_APP_API_BASE_URL` is set correctly.
+- Common places to debug:
+  - Map interactions: `src/libs/map-*`, `src/libs/map-click.js`, `src/libs/map-point.js`
+  - State & data flow: Pinia modules in `src/store/`
+  - API adapters: `src/api/`
 
-**单元/集成测试**
-- 当前仓库未包含自动化测试脚本；如需添加建议使用 `vitest` + `vue-test-utils` 来对组件与业务函数做单元测试。
+Testing
+---
+There are no automated tests in the repository currently. If you want, we can add `vitest` + `vue-test-utils` for unit and component testing.
 
-**构建与部署（示例：Nginx）**
-1. 生成构建：
+Build & Deployment (Nginx example)
+---
+1. Build:
 ```powershell
 npm run build
 ```
-2. 将输出目录 `dist/` 的内容部署到静态服务器。
-3. Nginx 简单示例配置：
+2. Deploy contents of `dist/` to your static host.
+
+Sample minimal Nginx config:
 ```
 server {
-		listen 80;
-		server_name example.com;
-		root /var/www/nexus/dist;
+    listen 80;
+    server_name example.com;
+    root /var/www/nexus/dist;
 
-		location / {
-				try_files $uri $uri/ /index.html;
-		}
+    location / {
+        try_files $uri $uri/ /index.html;
+    }
 }
 ```
 
-**贡献指南**
-- **流程**：Fork → feature 分支 → 提交 → PR
-- **代码风格**：请遵循现有代码风格（ESLint/Prettier 可根据团队加入）。
+Contribution Guide
+---
+1. Fork the repo and create a feature branch
+2. Run locally and verify (`npm install`, `npm run dev`)
+3. Make changes, write clear commit messages and open a PR with a description and testing notes
 
-**常见问题（Troubleshooting）**
-- 网页无法加载地图瓦片：检查 `public/mapLayer/` 或后端瓦片服务地址是否配置正确。
-- 接口返回 401/403：`src/libs/request.js` 的拦截器会在 401 时跳转 `/login`，请确认鉴权信息或本地 mock。
+Troubleshooting
+---
+- Map tiles not loading: verify `public/mapLayer/` files or remote tile service URLs are correct.
+- API returns 401/403: `src/libs/request.js` handles 401 by redirecting to `/login`; ensure auth or local mock is present.
 
+License
+---
+The repository does not currently specify an open-source license in `package.json`. Add a `LICENSE` file (e.g. MIT) if you plan to publish it.
 
+Contact
+---
+Author: IceCoffee
+
+----
+
+Next steps I can help with (choose any):
+- generate a detailed API reference for `src/api/` functions (parameters & example responses);
+- create an English+Chinese combined README or add badges; or
+- add a GitHub Actions workflow for CI (build & deploy).
