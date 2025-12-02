@@ -11,11 +11,9 @@ export const useConcentrationLayerStore = defineStore('concentrationLayer', {
                 {
                     id: 'concentration',
                     label: 'AQ Concentration',
-                    // label: 'Annual Average Air Concentration',
                     children: [
                         {
                             id: 'fused_PM25',
-                            // label: 'Fused PM2.5',
                             label: 'Annual average fused PM2.5',
                             min: -0.1,
                             max: 12.2,
@@ -201,68 +199,7 @@ export const useConcentrationLayerStore = defineStore('concentrationLayer', {
                                 },
                             ],
                         },
-                        // {
-                        //     id: 'satellite_NO2',
-                        //     label: 'Annual average satellite NO2',
-                        //     min: 0.4,
-                        //     max: 19.5,
-                        //     type: 'value',
-                        //     opacityValue: 75,
-                        //     scaleValue: 3,
-                        //     isCheck: true,
-                        //     disabled: true,
-                        //     children: [
-                        //         {
-                        //             id: 'value_19',
-                        //             label: '16.6 - 19.5',
-                        //             color: '#7468A1',
-                        //             min: 16.6,
-                        //             max: 19.5,
-                        //         },
-                        //         {
-                        //             id: 'value_16',
-                        //             label: '13.9 - 16.6',
-                        //             color: '#6886AA',
-                        //             min: 13.9,
-                        //             max: 16.6,
-                        //         },
-                        //         {
-                        //             id: 'value_13',
-                        //             label: '11.2 - 13.9',
-                        //             color: '#5DA1AB',
-                        //             min: 11.2,
-                        //             max: 13.9,
-                        //         },
-                        //         {
-                        //             id: 'value_11',
-                        //             label: '8.5 - 11.2',
-                        //             color: '#58BAA5',
-                        //             min: 8.5,
-                        //             max: 11.2,
-                        //         },
-                        //         {
-                        //             id: 'value_8',
-                        //             label: '5.8 - 8.5',
-                        //             color: '#79D292',
-                        //             min: 5.8,
-                        //             max: 8.5,
-                        //         },
-                        //         {
-                        //             id: 'value_5',
-                        //             label: '3.1 - 5.8',
-                        //             color: '#B8E46B',
-                        //             min: 3.1,
-                        //             max: 5.8,
-                        //         },
-                        //         {
-                        //             id: 'value_3',
-                        //             label: '0.4 - 3.1',
-                        //             color: '#FEEE5C',
-                        //             min: 0.4,
-                        //             max: 3.1,
-                        //         },
-                        //     ],
-                        // },
+
                     ],
                 },
             ],
@@ -270,7 +207,6 @@ export const useConcentrationLayerStore = defineStore('concentrationLayer', {
             dicKey: {
                 fused_PM25: 'Fused_PM25',
                 fused_O3: 'FUsed_O3',
-                // satellite_NO2: 'SatelliteData_NO2',
             },
             topDayO3Data: null,
         };

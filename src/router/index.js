@@ -15,11 +15,6 @@ const routes = [
                 component: () => import('../views/Map/index.vue'),
             },
             {
-                path: '/data',
-                name: 'Data',
-                component: () => import('../views/Map/Data/DataInput.vue'),
-            },
-            {
                 path: '/version',
                 component: () => import('../views/Map/Version/index.vue'),
             },

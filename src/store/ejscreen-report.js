@@ -7,7 +7,7 @@ export const useEJReportStore = defineStore('EJSCREENReport', {
             // 判断是否折叠
             collapse: true,
             // 判断是否显示
-            isShow: false,
+            isShow: true,
             //判断当前选中的是哪个tab
             selectType: 'county',
             // 选中的censusTract

@@ -2,8 +2,6 @@
     <div>
         <Sidebar />
         <div class="map" ref="mapRef" id="mapDivContent" style="height: calc(100vh - var(--header-height))"></div>
-        <!-- <Toolbar /> -->
-        <!-- <ZoomSelector /> -->
 
         <Legend ref="legendRef" />
         <!-- 颜色图例 -->
@@ -12,7 +10,6 @@
         <MonitorSites v-if="monitorSiteStore.isShow" />
         <MajorEissionSources v-if="majorEissionStore.isShow" />
         <ProximityAnalysis v-if="proximityAnalysisStore.isShow" />
-        <EJReport v-if="EJReportStore.isShow" />
         <MeteorologicalSite />
         <el-tooltip
             v-model:visible="tooltip.visible"
@@ -48,7 +45,6 @@
         <!-- 快速开始 -->
         <QuickStart v-if="quickStartStore.visible" />
         <QuickStartTour />
-        <!-- <div style="width: 100px; height: 100px; background: red;position: fixed; top: 0;left: 0;z-index: 1;" id="zoomLegend">666</div> -->
     </div>
 </template>
 
@@ -70,16 +66,12 @@ import Legend from './Legend/index.vue';
 import MonitroLegend from './Legend/MonitorLegend.vue';
 import QuickStart from './QuickStart/index.vue';
 import QuickStartTour from './QuickStart/QuickStartTour.vue';
-// import ZoomSelector from './ZoomSelector/index.vue';
-// import Toolbar from './Toolbar/index.vue';
 import { mapManager } from '@/libs/map/map-manager';
-// import { useSidebarStore } from '@/store/sidebar';
 import { useMonitorSiteStore } from '@/store/monitor-site';
 import { useMajorEissionStore } from '@/store/major-eission-sources.js';
 import { useViewCurrentDataStore } from '@/store/view-current-data';
 import { useProximityAnalysisStore } from '@/store/proximity-analysis';
 import { useSaveImageStore } from '@/store/save-image';
-import { useEJReportStore } from '@/store/ejscreen-report';
 import { useAirToxicStore } from '@/store/air-toxic';
 import { useQuickStartStore } from '@/store/quick-start.js';
 import ViewCurrentData from './Data/ViewCurrentData.vue';
@@ -87,16 +79,13 @@ import MonitorSites from './MonitorSites/index.vue';
 import MajorEissionSources from './MajorEissionSources/index.vue';
 import MeteorologicalSite from './MeteorologicalSite/index.vue';
 import ProximityAnalysis from './ProximityAnalysis/index.vue';
-import EJReport from './EJReport/index.vue';
 
-// const sidebarStore = useSidebarStore();
 const quickStartStore = useQuickStartStore();
 const monitorSiteStore = useMonitorSiteStore();
 const majorEissionStore = useMajorEissionStore();
 const viewCurrentDataStore = useViewCurrentDataStore();
 const proximityAnalysisStore = useProximityAnalysisStore();
 const saveImageStore = useSaveImageStore();
-const EJReportStore = useEJReportStore();
 const airToxicStore = useAirToxicStore();
 const mapRef = ref();
 const legendRef = ref();
